@@ -15,7 +15,7 @@ extension MovieExtension on Movie {
     String? posterPath,
     String? backdropPath,
     String? overview,
-    DateTime? releaseDate,
+    String? releaseDate,
   }) {
     return Movie(
       id: id ?? this.id,
@@ -37,7 +37,7 @@ extension MovieExtension on Movie {
         'poster_path': posterPath,
         'backdrop_path': backdropPath,
         'overview': overview,
-        'release_date': releaseDate.toString(),
+        'release_date': releaseDate,
       };
     } catch (e) {
       throw MapException(
@@ -50,7 +50,7 @@ extension MovieExtension on Movie {
   static Movie fromMap(Map<String, dynamic> map) {
     final pre = Get.find<DSON>();
     try {
-      final classification = pre.fromJson<Movie>(
+      final movie = pre.fromJson<Movie>(
         map,
         Movie.new,
         aliases: {
@@ -64,24 +64,11 @@ extension MovieExtension on Movie {
             'releaseDate': 'release_date',
           },
         },
-        resolvers: [
-          (
-            dynamic value,
-            FunctionParam param,
-            String className,
-            String paramName,
-          ) {
-            if (param.name == 'release_date') {
-              value = DateTime.parse(value);
-            }
-            return value;
-          },
-        ],
       );
-      return classification;
+      return movie;
     } catch (e) {
       throw MapException(
-        Exception('❌ Classification.fromMap: $e'),
+        Exception('❌ Movie.fromMap: $e'),
         StackTrace.fromString(e.toString()),
       );
     }

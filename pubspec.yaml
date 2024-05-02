@@ -12,9 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_localizations:
-    sdk: flutter
-
   cupertino_icons: ^1.0.8
   dio: ^5.4.3+1
   dson_adapter:
@@ -27,11 +24,8 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   get: ^4.6.6
   intl: any
-  l10n_flutter: 1.0.7
   mask_text_input_formatter: ^2.9.0
   universal_io: ^2.2.2
-
-
 
 dev_dependencies:
   flutter_test:
@@ -40,7 +34,6 @@ dev_dependencies:
   flutter_lints: ^3.0.2
 
 flutter:
-
   uses-material-design: true
 
   assets:

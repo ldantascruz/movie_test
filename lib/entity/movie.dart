@@ -9,7 +9,7 @@ class Movie extends Equatable {
   final String posterPath;
   final String backdropPath;
   final String overview;
-  final DateTime releaseDate;
+  final String releaseDate;
 
   const Movie({
     required this.id,

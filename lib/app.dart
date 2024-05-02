@@ -1,11 +1,8 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/config/constants/app.routes.dart';
 import 'feature/home/home.route.dart';
-import 'i18n/resources.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -14,7 +11,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    R.load(ui.PlatformDispatcher.instance.locale);
     return GetMaterialApp(
       title: 'Movie Test',
       debugShowCheckedModeBanner: false,
