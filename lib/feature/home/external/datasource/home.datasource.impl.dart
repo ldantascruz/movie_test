@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart' as dio;
 
 import '../../../../core/config/constants/app.endpoints.dart';
+import '../../../../core/exception/map_exception.dart';
 import '../../../../entity/movie.dart';
 import '../../infra/datasource/home.datasource.dart';
 
@@ -37,16 +38,22 @@ class HomeDatasourceImpl implements HomeDatasource {
 
       final List<Movie> movies = [];
       for (final item in response.data['results']) {
-        //quero apenas os primeiros 10 filmes
         if (movies.length == 10) {
           break;
         }
-
         movies.add(MovieExtension.fromMap(item));
       }
       return movies;
-    } catch (e) {
-      rethrow;
+    } on dio.DioException catch (e) {
+      if (e.response!.statusCode == 401) {
+        throw UnauthorizedException();
+      } else if (e.response!.statusCode == 404) {
+        throw NotFoundException();
+      } else if (e.response!.statusCode == 500) {
+        throw ServerException();
+      } else {
+        throw MapException(e, StackTrace.current);
+      }
     }
   }
 }
