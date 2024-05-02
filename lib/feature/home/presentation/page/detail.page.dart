@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../entity/movie.dart';
@@ -8,12 +9,17 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    final movie = ModalRoute.of(context)!.settings.arguments as Movie?;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.title),
-      ),
+          title: Text(movie!.title),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.back();
+            },
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [

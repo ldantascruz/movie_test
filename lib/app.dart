@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'core/config/constants/app.fonts.dart';
 import 'core/config/constants/app.routes.dart';
 import 'feature/home/home.route.dart';
 
@@ -12,11 +13,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Movie Test',
-      debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      getPages: AppRoutes.routes,
-      initialRoute: HomeRoute.home,
-    );
+        title: 'Movie Test',
+        debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
+        getPages: AppRoutes.routes,
+        initialRoute: HomeRoute.home,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: AppFonts.poppins,
+        ));
   }
 }

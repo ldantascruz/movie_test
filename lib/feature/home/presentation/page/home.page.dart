@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../home.route.dart';
 import '../controller/home.controller.dart';
+import '../movie_search_delegate.widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,6 +16,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Top 10 Filmes nos EUA'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate:
+                    MovieSearchDelegateWidget(controller.listMovies.value),
+              );
+            },
+          ),
+        ],
       ),
       body: Obx(() {
         if (controller.listMovies.value.isEmpty) {
@@ -29,9 +42,19 @@ class HomePage extends StatelessWidget {
             final String formattedDate =
                 DateFormat('dd/MM/yyyy').format(releaseDate);
             return ListTile(
-              leading: Image.network(
-                  'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
-                  height: 100.0),
+              leading: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '${index + 1}º - ',
+                    style: const TextStyle(fontSize: 16.0),
+                  ),
+                  Image.network(
+                    'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
+                    height: 100.0,
+                  ),
+                ],
+              ),
               title: Text(movie.title),
               subtitle: Text('Lançado em: $formattedDate'),
               onTap: () {

@@ -39,17 +39,21 @@ flutter:
   assets:
     - assets/images/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
 
 flutter_launcher_icons:
   #GLOBAL
-  image_path: "assets/images/icon.png"
+  image_path: "assets/images/logo_movie.png"
   #IOS
   ios: true
   remove_alpha_ios: true
